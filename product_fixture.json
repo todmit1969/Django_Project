@@ -1,0 +1,67 @@
+[
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "product_name": "Яблоко",
+        "product_desc": "Сезонные яблоки",
+        "product_image": "",
+        "product_category": "Фрукты",
+        "product_price": 101.0,
+        "created_at": "2025-06-14",
+        "updated_at": "2025-06-14"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "product_name": "Груша",
+        "product_desc": "Сезонные груши",
+        "product_image": "",
+        "product_category": "Фрукты",
+        "product_price": 131.0,
+        "created_at": "2025-06-14",
+        "updated_at": "2025-06-14"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "product_name": "Яблоко",
+        "product_desc": "Сезонные яблоки",
+        "product_image": "",
+        "product_category": "Фрукты",
+        "product_price": 101.0,
+        "created_at": "2025-06-14",
+        "updated_at": "2025-06-14"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+        "product_name": "Огурец",
+        "product_desc": "Гладкие огурцы",
+        "product_image": "",
+        "product_category": "Овощи",
+        "product_price": 131.0,
+        "created_at": "2025-06-14",
+        "updated_at": "2025-06-14"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+        "product_name": "Персик",
+        "product_desc": "Египетские персики",
+        "product_image": "",
+        "product_category": "Фрукты",
+        "product_price": 291.0,
+        "created_at": "2025-06-14",
+        "updated_at": "2025-06-14"
+    }
+}
+]
