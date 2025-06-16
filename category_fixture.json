@@ -14,53 +14,5 @@
         "category_name": "Овощи",
         "category_desc": "Категория овощей"
     }
-},
-{
-    "model": "catalog.category",
-    "pk": 3,
-    "fields": {
-        "category_name": "Фрукты",
-        "category_desc": "Категория фруктов"
-    }
-},
-{
-    "model": "catalog.category",
-    "pk": 4,
-    "fields": {
-        "category_name": "Овощи",
-        "category_desc": "Категория овощей"
-    }
-},
-{
-    "model": "catalog.category",
-    "pk": 5,
-    "fields": {
-        "category_name": "Фрукты",
-        "category_desc": "Категория фруктов"
-    }
-},
-{
-    "model": "catalog.category",
-    "pk": 6,
-    "fields": {
-        "category_name": "Овощи",
-        "category_desc": "Категория овощей"
-    }
-},
-{
-    "model": "catalog.category",
-    "pk": 7,
-    "fields": {
-        "category_name": "Фрукты",
-        "category_desc": "Категория фруктов"
-    }
-},
-{
-    "model": "catalog.category",
-    "pk": 8,
-    "fields": {
-        "category_name": "Овощи",
-        "category_desc": "Категория овощей"
-    }
 }
 ]

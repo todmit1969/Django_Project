@@ -5,3 +5,6 @@ def home(request):
 
 def contacts(request):
     return render(request, 'contacts.html')
+
+def images(request):
+    return render(request, 'images.html')

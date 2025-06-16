@@ -6,10 +6,10 @@
         "product_name": "Яблоко",
         "product_desc": "Сезонные яблоки",
         "product_image": "",
-        "product_category": "Фрукты",
-        "product_price": 101.0,
-        "created_at": "2025-06-14",
-        "updated_at": "2025-06-14"
+        "product_price": 120.0,
+        "created_at": "2025-06-16",
+        "updated_at": "2025-06-16",
+        "product_category": 1
     }
 },
 {
@@ -19,23 +19,23 @@
         "product_name": "Груша",
         "product_desc": "Сезонные груши",
         "product_image": "",
-        "product_category": "Фрукты",
-        "product_price": 131.0,
-        "created_at": "2025-06-14",
-        "updated_at": "2025-06-14"
+        "product_price": 30.0,
+        "created_at": "2025-06-16",
+        "updated_at": "2025-06-16",
+        "product_category": 1
     }
 },
 {
     "model": "catalog.product",
     "pk": 4,
     "fields": {
-        "product_name": "Яблоко",
-        "product_desc": "Сезонные яблоки",
+        "product_name": "Помидор",
+        "product_desc": "Узбекские помидоры",
         "product_image": "",
-        "product_category": "Фрукты",
-        "product_price": 101.0,
-        "created_at": "2025-06-14",
-        "updated_at": "2025-06-14"
+        "product_price": 250.0,
+        "created_at": "2025-06-16",
+        "updated_at": "2025-06-16",
+        "product_category": 2
     }
 },
 {
@@ -45,23 +45,10 @@
         "product_name": "Огурец",
         "product_desc": "Гладкие огурцы",
         "product_image": "",
-        "product_category": "Овощи",
-        "product_price": 131.0,
-        "created_at": "2025-06-14",
-        "updated_at": "2025-06-14"
-    }
-},
-{
-    "model": "catalog.product",
-    "pk": 7,
-    "fields": {
-        "product_name": "Персик",
-        "product_desc": "Египетские персики",
-        "product_image": "",
-        "product_category": "Фрукты",
-        "product_price": 291.0,
-        "created_at": "2025-06-14",
-        "updated_at": "2025-06-14"
+        "product_price": 99.0,
+        "created_at": "2025-06-16",
+        "updated_at": "2025-06-16",
+        "product_category": 2
     }
 }
 ]
