@@ -11,20 +11,20 @@ class Command(BaseCommand):
         Category.objects.all().delete()
         Product.objects.all().delete()
 
-        category, _ = Category.objects.get_or_create(category_name = "Молочные продукты", category_desc = "Продукты произведенные из молока")
+        category, _ = Category.objects.get_or_create(name = "Молочные продукты", desc = "Продукты произведенные из молока")
 
         products = [
-            {'product_name': 'Молоко', 'product_price': '133', 'created_at' : '2025-06-16',
-            'updated_at' : '2025-06-16', 'product_category':category},
-        {'product_name': 'Брынза', 'product_price': '133', 'created_at' : '2025-06-16',
-            'updated_at' : '2025-06-16', 'product_category':category}
+            {'name': 'Молоко', 'price': '133', 'created_at' : '2025-06-16',
+            'updated_at' : '2025-06-16', 'category':category},
+        {'name': 'Брынза', 'price': '133', 'created_at' : '2025-06-16',
+            'updated_at' : '2025-06-16', 'category':category}
         ]
 
         for product_data in products:
             product, created = Product.objects.get_or_create(**product_data)
             if created:
                 self.stdout.write(self.style.SUCCESS(
-                    f'Product: {product.product_name} added succefully'))
+                    f'Product: {product.name} added succefully'))
             else:
                 self.stdout.write(self.style.WARNING(
-                    f'Product: {product.product_name} already exist'))
+                    f'Product: {product.name} already exist'))

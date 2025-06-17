@@ -1,54 +1,54 @@
 [
 {
     "model": "catalog.product",
-    "pk": 2,
+    "pk": 1,
     "fields": {
-        "product_name": "Яблоко",
-        "product_desc": "Сезонные яблоки",
-        "product_image": "",
-        "product_price": 120.0,
+        "name": "Яблоко",
+        "desc": "Сезонные яблоки",
+        "image": "",
+        "price": 120.0,
         "created_at": "2025-06-16",
         "updated_at": "2025-06-16",
-        "product_category": 1
+        "category": 1
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Груша",
+        "desc": "Сезонные груши",
+        "image": "",
+        "price": 30.0,
+        "created_at": "2025-06-16",
+        "updated_at": "2025-06-16",
+        "category": 1
     }
 },
 {
     "model": "catalog.product",
     "pk": 3,
     "fields": {
-        "product_name": "Груша",
-        "product_desc": "Сезонные груши",
-        "product_image": "",
-        "product_price": 30.0,
+        "name": "Помидор",
+        "desc": "Узбекские помидоры",
+        "image": "",
+        "price": 250.0,
         "created_at": "2025-06-16",
         "updated_at": "2025-06-16",
-        "product_category": 1
+        "category": 2
     }
 },
 {
     "model": "catalog.product",
     "pk": 4,
     "fields": {
-        "product_name": "Помидор",
-        "product_desc": "Узбекские помидоры",
-        "product_image": "",
-        "product_price": 250.0,
+        "name": "Огурец",
+        "desc": "Гладкие огурцы",
+        "image": "",
+        "price": 99.0,
         "created_at": "2025-06-16",
         "updated_at": "2025-06-16",
-        "product_category": 2
-    }
-},
-{
-    "model": "catalog.product",
-    "pk": 5,
-    "fields": {
-        "product_name": "Огурец",
-        "product_desc": "Гладкие огурцы",
-        "product_image": "",
-        "product_price": 99.0,
-        "created_at": "2025-06-16",
-        "updated_at": "2025-06-16",
-        "product_category": 2
+        "category": 2
     }
 }
 ]

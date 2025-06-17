@@ -3,16 +3,16 @@
     "model": "catalog.category",
     "pk": 1,
     "fields": {
-        "category_name": "Фрукты",
-        "category_desc": "Категория фруктов"
+        "name": "Фрукты",
+        "desc": "Категория фруктов"
     }
 },
 {
     "model": "catalog.category",
     "pk": 2,
     "fields": {
-        "category_name": "Овощи",
-        "category_desc": "Категория овощей"
+        "name": "Овощи",
+        "desc": "Категория овощей"
     }
 }
 ]
