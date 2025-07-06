@@ -3,12 +3,12 @@ from .models import Category, Product
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display =('id', 'category_name',)
-    search_fields = ('category_name', 'category_desc',)
+    list_display =('id', 'name',)
+    search_fields = ('name', 'desc',)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'product_name', 'product_price', 'product_category',)
-    list_filter = ('product_category',)
-    search_fields = ('product_name', 'product_desc',)
+    list_display = ('id', 'name', 'price', 'category',)
+    list_filter = ('category',)
+    search_fields = ('name', 'desc',)
 
