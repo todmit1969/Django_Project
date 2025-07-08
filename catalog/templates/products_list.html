@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <h2 class="mb-4">Список продуктов</h2>
+
+  <a href="{% url 'catalog:product_create' %}" class="btn btn-success mb-4">Добавить продукт</a>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for product in object_list %}
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.title }}</h5>
+            <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+            <p class="card-text"><strong>Цена:</strong> {{ product.price }} ₽</p>
+            <p class="card-text">
+              <strong>Статус:</strong>
+              {% if product.is_published %}
+                <span class="text-success">Опубликован</span>
+              {% else %}
+                <span class="text-danger">Снят с публикации</span>
+              {% endif %}
+            </p>
+          </div>
+          <div class="card-footer d-flex flex-wrap gap-2">
+            <a href="{% url 'catalog:one_product' product.pk %}" class="btn btn-primary btn-sm">Подробнее</a>
+
+            {% if product.owner == request.user or perms.catalog.change_product %}
+              <a href="{% url 'catalog:product_update' product.pk %}" class="btn btn-warning btn-sm">Редактировать</a>
+            {% endif %}
+
+            {% if product.owner == request.user or perms.catalog.delete_product %}
+              <a href="{% url 'catalog:product_delete' product.pk %}" class="btn btn-danger btn-sm">Удалить</a>
+            {% endif %}
+
+            {% if perms.catalog.can_unpublish_product and product.is_published %}
+              <form method="post" action="{% url 'catalog:product_unpublish' product.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-secondary btn-sm">Снять с публикации</button>
+              </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col">
+        <div class="alert alert-warning">Нет доступных продуктов.</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
