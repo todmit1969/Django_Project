@@ -17,10 +17,29 @@
 </div>
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Магазин доступных товаров</h1>
-    <p class="lead">Магазин доступных товаров предлагает большой ассортимент товаров с бесплатной доставкой.</p>
-</div>
+        <h1 class="display-4">Магазин доступных товаров</h1>
+        <p class="lead">Магазин доступных товаров предлагает большой ассортимент товаров с бесплатной доставкой.</p>
+        {% for product in object_list %}
+        <div class="col-md-4">
+            <div class="card h-20 shadow-sm">
+                <div class="card-body">
+                    <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="{{ product.name }}" style="height: 18rem; object-fit: cover;">
 
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+                    <p class="card-text"><strong>Цена:</strong> {{ product.price }} ₽</p>
+                </div>
+                <div class="card-footer d-flex flex-wrap gap-2">
+                    <a href="{% url 'catalog:single_product' product.pk %}" class="btn btn-primary btn-sm">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col">
+            <div class="alert alert-warning">Нет доступных продуктов.</div>
+        </div>
+        {% endfor %}
+    </div>
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
             <div class="col-12 col-md">
