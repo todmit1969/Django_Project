@@ -42,15 +42,13 @@
             {{ form.image }}
         </div>
         <div class="form-group">
-            <label>Создан</label>
             {{ form.created_at }}
         </div>
         <div class="form-group">
-            <label>Изменен</label>
             {{ form.updated_at }}
         </div>
         <button type="submit" class="btn btn-success">Сохранить</button>
-        <a href="{% url 'catalog:products_list' %}" class="btn btn-secondary">Назад</a>
+        <a href="{% url 'catalog:home' %}" class="btn btn-secondary">Назад</a>
     </form>
 </div>
 </body>
