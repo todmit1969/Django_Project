@@ -73,7 +73,7 @@ class ProductForm(StyleFormMixin, ModelForm):
                 raise ValidationError(f'Наименование не должно содержать слово "{word}"!')
         return name
 
-    def clean_description(self):
+    def clean_desc(self):
         description = self.cleaned_data.get("desc", "")
         lowered = description.lower()
         for word in FORBIDDEN_WORDS:

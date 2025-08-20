@@ -5,7 +5,9 @@
   <h2 class="mb-4">{{ product.name }}</h2>
   <div class="card">
     <div class="card-body">
-      <img src="{{ product.image.url }}" alt="{{ MEDIA_URL }}" class="card-img-top">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ MEDIA_URL }}" class="card-img-top">
+      {% endif %}
       <p><strong>Наименование:</strong> {{ product.name }} </p>
       <p><strong>Цена:</strong> {{ product.price }} ₽</p>
       <p><strong>Описание:</strong> {{ product.description }}</p>
