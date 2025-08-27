@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1>Список статей</h1>
+<a href="{% url 'blog:post_create' %}">Создать новую статью</a>
+<ul>
+  {% for post in object_list %}
+  <li>
+    <h2><a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></h2>
+    <p>{{ post.content|truncatewords:20 }}</p>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

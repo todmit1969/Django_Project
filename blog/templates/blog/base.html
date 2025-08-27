@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Блог статей</title>
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+
+    <meta name="description" content="Блог статей" />
+    <link rel="icon" href="{% static 'favicon.ico' %}" />
+
+    <!-- Дополнительные стили -->
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Основной контент -->
+    <main>
+      <!-- Заголовок и описание сайта -->
+      <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Блог статей</h1>
+            <p class="lead text-muted">Здесь можно найти и создать статьи или посты на любую тему.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Блок для вставки контента страниц -->
+      {% block content %}
+      {% endblock %}
+    </main>
+
+    <!-- Футер сайта -->
+    <footer class="text-muted py-5 bg-light">
+      <div class="container d-flex justify-content-between align-items-center">
+        <p class="mb-3">Пишите нам: example@ya.ru.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  </body>
+</html>
