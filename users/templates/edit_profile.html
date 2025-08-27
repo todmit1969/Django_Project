@@ -1,0 +1,38 @@
+{% extends "catalog/base.html" %}
+{% block title %}Редактирование профиля{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row text-start">
+        <div class="col-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+
+                    <h2>Редактирование профиля {{ object.email }}</h2>
+
+                    <!-- Сообщения об ошибках и успехе -->
+                    {% if messages %}
+                    <div class="alert alert-info">
+                        {% for message in messages %}
+                        <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- Отображаем поля формы, как в примере регистрации -->
+                        {{ form.as_p }}
+
+                        <!-- Кнопка отправки формы -->
+                        <button type="submit" class="btn btn-outline-primary">Сохранить изменения</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

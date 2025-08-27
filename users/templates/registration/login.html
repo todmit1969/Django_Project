@@ -1,0 +1,31 @@
+<!-- registration/login.html -->
+{% extends "catalog/base.html" %}
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row text-start">
+
+
+        <div class="col-12">
+            <div class="card mb-4 box-shadow">
+
+                <div class="card-body">
+                    <h2>Вход</h2>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-outline-primary">Войти</button>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}
