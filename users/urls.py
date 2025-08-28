@@ -8,7 +8,7 @@ app_name = 'users'
 
 urlpatterns = [
     path("login/", LoginView.as_view(), name="login"),
-    path("logout/", LogoutView.as_view(next_page="catalog:product_list"), name="logout"),
+    path("logout/", LogoutView.as_view(next_page="catalog:products_list"), name="logout"),
     path("register/", views.RegisterView.as_view(), name="register"),
     path("email-confirm/<str:token>/", views.email_verification, name="email-confirm"),
     path("edit-profile/", views.UserChangeView.as_view(), name="edit-profile"),
