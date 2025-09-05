@@ -16,10 +16,27 @@
             <p class="card-text"><strong>Цена:</strong> {{ product.price }} ₽</p>
           </div>
           <div class="card-footer d-flex flex-wrap gap-2">
+            {% if not product.is_published %}
+            <br>
+            <br>
+            <p class="text-danger">Продукт был снят с публикации.</p>
+            {% endif %}
             <a href="{% url 'catalog:single_product' product.pk %}" class="btn btn-primary btn-sm">Подробнее</a>
-            <a href="{% url 'catalog:product_update' product.pk %}" class="btn btn-primary btn-sm">Изменить</a>
+            {% if product.owner == user or is_moderator %}
+            <a type="button" class="btn btn-primary btn-sm"
+               href="{% url 'catalog:product_update' product.pk %}">Изменить</a>
             <a href="{% url 'catalog:product_delete' product.pk %}" class="btn btn-danger btn-sm">Удалить</a>
+            {% endif %}
           </div>
+                <div class="card-footer d-flex justify-content-end mt-2">
+                  {% if product.is_published and product.owner == user or is_moderator %}
+                    <form action="{% url 'catalog:product_unpublish' product.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Снять с публикации</button>
+                    </form>
+                    {% endif %}
+                </div>
+
         </div>
       </div>
     {% empty %}
