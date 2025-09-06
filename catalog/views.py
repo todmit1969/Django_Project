@@ -1,3 +1,6 @@
+from django.http import HttpResponseForbidden
+from django.shortcuts import get_object_or_404, redirect
+from django.views import View
 from django.views.generic import ListView, DetailView, TemplateView
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -37,6 +40,12 @@ class ProductListView(ListView):
     template_name = "products_list.html"
     context_object_name = "object_list"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        is_moderator = self.request.user.groups.filter(name="Модератор").exists()
+        context["is_moderator"] = is_moderator
+        return context
+
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
@@ -44,8 +53,29 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "product_form.html"
     success_url = reverse_lazy("catalog:home")
 
+    def dispatch(self, request, *args, **kwargs):
+        product = super().get_object()
+        if product.owner == self.request.user:
+            return super().dispatch(request, *args, **kwargs)
+        return HttpResponseForbidden("Вы не можете изменять этот продукт!")
+
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     template_name = "product_confirm_delete.html"
     success_url = reverse_lazy("catalog:home")
+
+    def dispatch(self, request, *args, **kwargs):
+        product = super().get_object()
+        if product.owner == self.request.user or request.user.has_perm("catalog:delete_product"):
+            return super().dispatch(request, *args, **kwargs)
+        return HttpResponseForbidden("Вы не можете удалить этот продукт!")
+
+class ProductUnpublishView(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        product = get_object_or_404(Product, pk=pk)
+        if not request.user.has_perm("catalog.can_unpublish_product"):
+            return HttpResponseForbidden("У вас нет прав для снятия продукта с публикации!")
+        product.is_published = False
+        product.save()
+        return redirect("catalog:products_list")

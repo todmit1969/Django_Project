@@ -24,7 +24,7 @@ class RegisterView(CreateView):
         url = f"http://{host}/users/email-confirm/{token}/"
         send_mail(
             subject="Подтверждение почты",
-            message=f"Приветствуем вас на нашем сайте Перейдите по ссылке для подтверждения эл. почты {url}",
+            message=f"Приветствуем вас на нашем сайте. Перейдите по ссылке для подтверждения эл. почты {url}",
             from_email=DEFAULT_FROM_EMAIL,
             recipient_list=[user.email],
         )
@@ -43,11 +43,11 @@ class UserChangeView(UpdateView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, "Ваш профиль был успешно обновлён")
+        messages.success(self.request, "Ваш профиль был успешно обновлён!")
         return redirect("users:edit-profile")
 
     def form_invalid(self, form):
-        messages.error(self.request, "Произошла ошибка при обновлении профиля")
+        messages.error(self.request, "Произошла ошибка при обновлении профиля!")
         return self.render_to_response(self.get_context_data(form=form))
 
 
