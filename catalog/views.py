@@ -7,8 +7,12 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import ProductForm
-from .models import Product
+from .models import Product, Category
+from .services import products_by_category
 
+from django.core.cache import cache
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
 class HomeView(TemplateView):
     template_name = "home.html"
@@ -17,11 +21,18 @@ class HomeView(TemplateView):
 class ContactsView(TemplateView):
     template_name = "contacts.html"
 
-
+@method_decorator(cache_page(60 * 15), name='dispatch')
 class ProductDetailView(DetailView):
     model = Product
     template_name = "single_product.html"
     context_object_name = "product"
+
+    def get_queryset(self):
+        queryset = cache.get('category_queryset')
+        if not queryset:
+            queryset = super().get_queryset()
+            cache.set('category_queryset', queryset, 60 * 15)
+        return queryset
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
@@ -44,6 +55,28 @@ class ProductListView(ListView):
         context = super().get_context_data(**kwargs)
         is_moderator = self.request.user.groups.filter(name="Модератор").exists()
         context["is_moderator"] = is_moderator
+        return context
+
+class ProductByCategoryListView(ListView):
+    model = Product
+    template_name = "product_by_category.html"
+
+    def get_queryset(self):
+        category_id = self.request.GET.get("category")
+
+        return products_by_category(category_id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        is_moderator = self.request.user.groups.filter(
+            name="Модератор продуктов"
+        ).exists()
+
+        context["is_moderator"] = is_moderator
+        categories = Category.objects.all()
+        context["categories"] = categories
+
         return context
 
 
