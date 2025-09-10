@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row text-center">
+
+        {% for product in object_list %}
+        <div class="col-4 d-flex">
+            <div class="card mb-4 box-shadow w-100">
+                <div class="card-header">
+                    <img src="{{ product.image }}" class="img-fluid"
+                         style="height: 12rem; object-fit: cover;">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{ product.name }}</h3>
+                        <p>Категория: {{ product.category }}</p>
+
+                        <p>{{ product.description|truncatechars:100 }}</p>
+
+                        <h3 class="card-title pricing-card-title">{{ product.price }}</h3>
+                        <a type="button" class="btn btn-outline-primary"
+                           href="{% url 'catalog:product_detail' product.pk %}">Подробнее</a>
+
+
+                        {% if product.owner == user %}
+                        <a type="button" class="btn btn-outline-primary"
+                           href="{% url 'catalog:product_update' product.pk %}">Изменить</a>
+                        {% endif %}
+
+
+                        {% if not product.is_published %}
+                        <br>
+                        <br>
+                        <p class="text-danger">Продукт был снят с публикации</p>
+                        {% endif %}
+
+
+                </div>
+                {% if product.owner == user or is_moderator %}
+                <div class="card-footer d-flex justify-content-end mt-2">
+                    {% if is_moderator %}
+                    <form action="{% url 'catalog:product_unpublish' product.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Снять с публикации</button>
+                    </form>
+                    {% endif %}
+                    {% if product.owner == user or is_moderator %}
+                    <a type="button" class="btn btn-outline-danger btn-sm ms-2"
+                       href="{% url 'catalog:product_delete' product.pk %}">Удалить</a>
+                    {% endif %}
+
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    <div class="col-12">
+    </div>
+</div>
+
+{% endblock %}
