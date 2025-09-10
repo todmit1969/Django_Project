@@ -27,13 +27,6 @@ class ProductDetailView(DetailView):
     template_name = "single_product.html"
     context_object_name = "product"
 
-    def get_queryset(self):
-        queryset = cache.get('category_queryset')
-        if not queryset:
-            queryset = super().get_queryset()
-            cache.set('category_queryset', queryset, 60 * 15)
-        return queryset
-
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
@@ -56,6 +49,13 @@ class ProductListView(ListView):
         is_moderator = self.request.user.groups.filter(name="Модератор").exists()
         context["is_moderator"] = is_moderator
         return context
+
+    def get_queryset(self):
+        queryset = cache.get('category_queryset')
+        if not queryset:
+            queryset = super().get_queryset()
+            cache.set('category_queryset', queryset, 60 * 15)
+        return queryset
 
 class ProductByCategoryListView(ListView):
     model = Product
